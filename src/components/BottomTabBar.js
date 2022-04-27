@@ -38,7 +38,7 @@ const BottomTabBar = () => {
             </li>
             <li className='btn' onClick={()=>goToCartPage()} >
                 <a  className='nav-link' >
-                    <span style={{ position:"absolute", top:-5, right:-7,  width:20, height:20, borderRadius:20, backgroundColor:"#e74c3c", color:"#fff", fontSize:9, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"century_bold" }} >100</span>
+                    <span style={{ position:"absolute", top:-5, right:-7,  width:20, height:20, borderRadius:20, backgroundColor:"#f6b229", color:"#fff", fontSize:9, display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"century_bold" }} >100</span>
                     <span><ShoppingBag color="#333" size={24} /></span>
                 </a>
             </li>

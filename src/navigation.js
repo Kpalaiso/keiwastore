@@ -22,7 +22,7 @@ const RootNavigator = () => {
                      <Route path="/checkout" exact render={()=><CheckOut  />}  /> 
                      <Route path="/sussess_order" exact render={()=><SuccessOrder  />}  />
                  </Switch>
-                 <BottomTabBar />
+                 {/* <BottomTabBar /> */}
              </BrowserRouter>
              </main>
         </>
