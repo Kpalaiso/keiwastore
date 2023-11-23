@@ -20,7 +20,7 @@ import '../App.css';
 
 const Home = () => {
 
-  const ws = new WebSocket('wss://testapi.keiwa.app/');
+//  const ws = new WebSocket('wss://testapi.keiwa.app/');
   const dispatch=useDispatch();
   const history=useHistory();
   const [openDrawer, setOpenDrawer]=useState(false);
@@ -220,7 +220,7 @@ const Home = () => {
                 dispatch({type:REFRESH_VIEW, payload:!_isRefresh});
             });
             setLoading(false);
-            ws.send(JSON.stringify({id_user:data_store[0].id_user,event:"reload_all_data", id_store:data_store[0].id_local_store}));
+        //    ws.send(JSON.stringify({id_user:data_store[0].id_user,event:"reload_all_data", id_store:data_store[0].id_local_store}));
         }
     }
 
