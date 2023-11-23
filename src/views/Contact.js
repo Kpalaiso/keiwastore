@@ -56,11 +56,11 @@ const Contact = () => {
                 <div style={{ marginTop:7 }} ><span style={{color:"#444", fontSize:16, marginLeft:5, marginTop:5, fontFamily:"Century_bold" }} > {data_store[0].email} </span></div>
             </div>
             <div id="mapViews" style={{ flex:1, height:300, width:"100%", background:"#f5f7fb", display:"flex",  alignItems:"center", justifyContent:"center" }} >   
-            {!isLoaded && (
+            {isLoaded && (
                 <GoogleMap
-                mapContainerClassName="map-container"
+                mapContainerClassName="map-container-contact"
                 center={{ lat: parseFloat(data_store[0].latitude), lng: parseFloat(data_store[0].longitude) }}
-                zoom={10}
+                zoom={15}
                 >
                     <Marker position={{ lat: parseFloat(data_store[0].latitude), lng: parseFloat(data_store[0].longitude) }} />
                 </GoogleMap>

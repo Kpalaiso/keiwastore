@@ -21,7 +21,7 @@ import moment from 'moment';
 import { UPDATE_STOCK_PRODUCT, UPDATE_CART, GET_USER_STORE, REFRESH_VIEW } from "../lib/actions/action_type";
 
 const CheckOut = () => {
-  const ws = new WebSocket('wss://testapi.keiwa.app/');
+//  const ws = new WebSocket('wss://testapi.keiwa.app/');
   const history=useHistory();
   const dispatch=useDispatch();
   const _list_user_coordinates=useSelector(state => state.list_user_coordinates);
@@ -92,7 +92,7 @@ const CheckOut = () => {
        dispatch({type:UPDATE_CART, payload:[]});
        dispatch({type:UPDATE_STOCK_PRODUCT, payload:_listProduct});
     });
-    sendNotification(data_notifiction);
+//    sendNotification(data_notifiction);
     setLoading(false);
     toggleModalDialogue();
   }
@@ -137,7 +137,7 @@ const CheckOut = () => {
             let data_notifiction={ title:"Paiement depuis votre boutique "+data_store[0].nom,description:"Vous avez reçu un paiement d'un montant de "+ montant_vente +" "+ user_data_infos[0].currency +" pour la vente de "+desc_vente,token:user_data_infos[0].token_notification,id_user:user_data_infos[0].id_user }
             _saveUserWalletAmount(_data_amount);
             _updateCommande(id_online_commande,1);
-            sendNotification(data_notifiction);
+        //    sendNotification(data_notifiction);
             saveVente();
         }
     });
@@ -193,9 +193,9 @@ const CheckOut = () => {
                 _saveRecette(_lastTabVentes);
                 _saveStockHistorique(historiqueData);
                 _updateStock(_tabUpdateInfosStock);
-                setTimeout(() => {
+                /* setTimeout(() => {
                     ws.send(JSON.stringify({id_user:data_store[0].id_user,event:"reload_all_data" }));
-                }, 600);
+                }, 600); */
             }
         });   
     }
@@ -271,7 +271,7 @@ const CheckOut = () => {
                         </div>
                     </div>
                     <div onClick={()=>registerCommande()} style={{ position:"fixed", bottom:0, left:0, right:0,  height:60, display:"flex", flexDirection:"row",  alignItems:"center", justifyContent:"center", backgroundColor:"#fff", boxShadow:"rgba(0, 0, 0, 0.1) 0px 1px 2px 0px", paddingLeft:10, paddingRight:10  }} >
-                        <div onClick={()=>toggleModalDialogue()} style={{ flex:1, marginLeft:10, height:45, borderRadius:4, display:"flex",  alignItems:"center", justifyContent:"center", backgroundColor:"#f6b229", boxShadow:"rgba(0, 0, 0, 0.1) 0px 1px 2px 0px"  }} >
+                        <div  style={{ flex:1, marginLeft:10, height:45, borderRadius:4, display:"flex",  alignItems:"center", justifyContent:"center", backgroundColor:"#f6b229", boxShadow:"rgba(0, 0, 0, 0.1) 0px 1px 2px 0px"  }} >
                             <span style={{ fontFamily:"century_bold", color:"#fff", fontSize:14,  }} >Valider la commande</span>
                         </div>
                     </div>

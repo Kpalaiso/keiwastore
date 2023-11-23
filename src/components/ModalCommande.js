@@ -19,7 +19,9 @@ export default function ModalCommande({openModal,toggleModalDialogue,data_comman
     ressetCmd();
   }
 
-  const paiementOrder=(e)=>_paiementOrder(e);
+  const paiementOrder=(e)=>{
+    alert("Cette fonctionnalité n'est pas encore disponible")
+  }
 
   return (
       <Dialog

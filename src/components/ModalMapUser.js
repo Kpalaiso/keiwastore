@@ -21,6 +21,7 @@ export default function ModalMapUser({openMapUser,toggleModalMapUser,address,_ci
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyCwmz2CstWs-2hp_ygHYc527i7XBgIrNJg",
+    libraries: ["places"]
   });
 
   const handleClose = () => toggleModalMapUser();
@@ -55,10 +56,13 @@ export default function ModalMapUser({openMapUser,toggleModalMapUser,address,_ci
         <div id="mapViews" style={{ flex:1, height:100+"vh", width:"100%", background:"#f5f7fb", display:"flex",  alignItems:"center", justifyContent:"center" }} >  
             {
                 ( isLoaded && coordinates) && (
+                  <>
                   <GoogleMap
-                  defaultZoom={15}
-                  defaultCenter={{ lat: parseFloat(coords.lat), lng: parseFloat(coords.lng) }}
-                >
+                    mapContainerClassName="map-container"
+                    center={{ lat: parseFloat(coords.lat), lng: parseFloat(coords.lng) }}
+                    zoom={15}
+                  >
+                    <>
                     <div style={{  position:"absolute", top:53, left:10, right:10, }} >
                         <div style={{ width:window.screen.width-20, position:"relative",  }} >
                         <div onClick={()=>handleClose()} style={{ width:30, height:30, position:"absolute", left:10, top:10, }} >
@@ -90,8 +94,10 @@ export default function ModalMapUser({openMapUser,toggleModalMapUser,address,_ci
                         /> 
                         </div>
                     </div>
-                <Marker position={{ lat: parseFloat(coords.lat), lng: parseFloat(coords.lng) }} />
-                </GoogleMap>
+                    </>
+                    <Marker position={{ lat: parseFloat(coords.lat), lng: parseFloat(coords.lng) }} />
+                  </GoogleMap>
+                </>
                 )
             }
             <div  style={{ position:"fixed", bottom:0, left:0, right:0,  height:60, display:"flex", flexDirection:"row",  alignItems:"center", justifyContent:"center", backgroundColor:"#fff", boxShadow:"rgba(0, 0, 0, 0.1) 0px 1px 2px 0px", paddingLeft:10, paddingRight:10  }} >

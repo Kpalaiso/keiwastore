@@ -14,7 +14,7 @@ import moment from 'moment';
 
 const Paiement = () => {
     
-    const ws = new WebSocket('wss://testapi.keiwa.app/');
+//    const ws = new WebSocket('wss://testapi.keiwa.app/');
     const data_commande=[...useSelector(state => state.list_commande)];
     const data_detail_commande=[...useSelector(state => state.list_detail_commande)];
     const data_store=[...useSelector(state => state.store_data)];
@@ -114,9 +114,9 @@ const Paiement = () => {
                 _saveRecette(_lastTabVentes);
                 _saveStockHistorique(historiqueData);
                 _updateStock(_tabUpdateInfosStock);
-                setTimeout(() => {
+                /* setTimeout(() => {
                     ws.send(JSON.stringify({id_user:data_store[0].id_user,event:"reload_all_data" }));
-                }, 600); 
+                }, 600); */ 
             }
         });   
     }

@@ -251,6 +251,11 @@ display: block;
 }
 
 .map-container {
+  height: 100%; 
+  width:100%;
+}
+
+.map-container-contact{
   height: 250px; 
   width:100%;
 }
