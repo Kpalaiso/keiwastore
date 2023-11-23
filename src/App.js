@@ -1,18 +1,21 @@
-import { useEffect } from "react";
 import RootNavigator from "./navigation";
+import store from "./lib/store";
+import { Provider } from 'react-redux';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import './App.css';
 
+export const client = new ApolloClient({
+  uri: 'https://api.keiwa.app/graphql',
+  cache: new InMemoryCache()
+});
+
 function App() {
-  /* 
-  const queryParams = new URLSearchParams(window.location.search);
-  const id = queryParams.get('id');
-  console.log(id);
-  http://localhost:3000/?id=1234 
-  */
   return (
-    <div>
-      <RootNavigator  />
-    </div>
+    <Provider store={store} >
+      <ApolloProvider client={client}  >
+        <RootNavigator  />
+      </ApolloProvider>
+    </Provider>
   );
 }
 
