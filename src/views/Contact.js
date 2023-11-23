@@ -1,12 +1,7 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {
-    withScriptjs,
-    withGoogleMap,
-    GoogleMap,
-    Marker,
-  } from "react-google-maps";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import PhoneIphoneRoundedIcon from '@mui/icons-material/PhoneIphoneRounded';
@@ -15,20 +10,13 @@ import '../App.css';
 
 const Contact = () => {
 
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: "AIzaSyCwmz2CstWs-2hp_ygHYc527i7XBgIrNJg",
+    });
+
   const history=useHistory();
   const data_store=[...useSelector(state => state.store_data)];
   const _goBack=()=>history.goBack();
-
-  const MapWithAMarker = withScriptjs(withGoogleMap(props =>
-    <GoogleMap
-      defaultZoom={15}
-      defaultCenter={{ lat: parseFloat(data_store[0].latitude), lng: parseFloat(data_store[0].longitude) }}
-    >
-      <Marker
-        position={{ lat: parseFloat(data_store[0].latitude), lng: parseFloat(data_store[0].longitude) }}
-      />
-    </GoogleMap>
-  ));
 
   return (
         <div>
@@ -67,17 +55,16 @@ const Contact = () => {
                 </div>
                 <div style={{ marginTop:7 }} ><span style={{color:"#444", fontSize:16, marginLeft:5, marginTop:5, fontFamily:"Century_bold" }} > {data_store[0].email} </span></div>
             </div>
-            <div id="mapViews" style={{ flex:1, height:300, width:"100%", background:"#f5f7fb", display:"flex",  alignItems:"center", justifyContent:"center" }} >  
-            {
-                (data_store[0].latitude!=0 && data_store[0].longitude!=0) && (
-                    <MapWithAMarker
-                        googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyCwmz2CstWs-2hp_ygHYc527i7XBgIrNJg&libraries=places`}
-                        loadingElement={<div style={{ height: "100%" }} />}
-                        containerElement={<div style={{ height: 250, width:"100%" }} />}
-                        mapElement={<div style={{ height: "100%" }} />}
-                    />
-                )
-            } 
+            <div id="mapViews" style={{ flex:1, height:300, width:"100%", background:"#f5f7fb", display:"flex",  alignItems:"center", justifyContent:"center" }} >   
+            {!isLoaded && (
+                <GoogleMap
+                mapContainerClassName="map-container"
+                center={{ lat: parseFloat(data_store[0].latitude), lng: parseFloat(data_store[0].longitude) }}
+                zoom={10}
+                >
+                    <Marker position={{ lat: parseFloat(data_store[0].latitude), lng: parseFloat(data_store[0].longitude) }} />
+                </GoogleMap>
+            )}
             </div> 
         </div>
         </div>
