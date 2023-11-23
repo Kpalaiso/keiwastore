@@ -5,7 +5,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import './App.css';
 
 export const client = new ApolloClient({
-  uri: 'https://api.keiwa.app/graphql',
+  uri: 'https://api.keiwa.co/graphql',
   cache: new InMemoryCache()
 });
 
