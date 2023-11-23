@@ -33,10 +33,14 @@
     "yup": "^0.32.11"
   },
   "scripts": {
+    "build:digitalocean": "npm install --production=false && npm run build && npm ci",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "engines": {
+    "node": "16.x"
   },
   "eslintConfig": {
     "extends": [
