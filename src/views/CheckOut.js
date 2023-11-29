@@ -92,7 +92,7 @@ const CheckOut = () => {
        dispatch({type:UPDATE_CART, payload:[]});
        dispatch({type:UPDATE_STOCK_PRODUCT, payload:_listProduct});
     });
-//    sendNotification(data_notifiction);
+    sendNotification(data_notifiction);
     setLoading(false);
     toggleModalDialogue();
   }
@@ -103,6 +103,8 @@ const CheckOut = () => {
   }
 
   const _paiementOrder=(e)=>{
+    alert("Le wallet de paiement n'est pas encore disponible. Veuillez patienter la prochaine mise à jour");
+    /* 
     e.preventDefault();
     window.CinetPay.setConfig({
         apikey: '12931059005d9dab1c5d9397.08748695',//   YOUR APIKEY
@@ -116,7 +118,6 @@ const CheckOut = () => {
         currency: 'XOF',
         channels: 'ALL',
         description: "Vente de "+desc_vente,   
-        //Fournir ces variables pour le paiements par carte bancaire
         customer_name:data_user_store[0].nom,//Le nom du client
         customer_surname:"",//Le prenom du client
         customer_email: data_user_store[0].email,//l'email du client
@@ -125,7 +126,7 @@ const CheckOut = () => {
         customer_city: data_user_store[0].ville,// La ville du client
         customer_country : "CM",// le code ISO du pays
         customer_state : "CM",// le code ISO l'état
-        customer_zip_code : "06510", // code postal
+        customer_zip_code : "06510", 
     });
     window.CinetPay.waitResponse(function(data) {
         if (data.status == "REFUSED") {
@@ -137,13 +138,14 @@ const CheckOut = () => {
             let data_notifiction={ title:"Paiement depuis votre boutique "+data_store[0].nom,description:"Vous avez reçu un paiement d'un montant de "+ montant_vente +" "+ user_data_infos[0].currency +" pour la vente de "+desc_vente,token:user_data_infos[0].token_notification,id_user:user_data_infos[0].id_user }
             _saveUserWalletAmount(_data_amount);
             _updateCommande(id_online_commande,1);
-        //    sendNotification(data_notifiction);
+            sendNotification(data_notifiction);
             saveVente();
         }
     });
     window.CinetPay.onError(function(data) {
         console.log(data);
-    }); 
+    });  
+    */
   }
 
   const saveVente = () =>{
@@ -193,9 +195,6 @@ const CheckOut = () => {
                 _saveRecette(_lastTabVentes);
                 _saveStockHistorique(historiqueData);
                 _updateStock(_tabUpdateInfosStock);
-                /* setTimeout(() => {
-                    ws.send(JSON.stringify({id_user:data_store[0].id_user,event:"reload_all_data" }));
-                }, 600); */
             }
         });   
     }

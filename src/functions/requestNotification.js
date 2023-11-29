@@ -4,7 +4,7 @@ export const sendNotification = async (data) =>{
     try {
         let res = await  axios({
             method: 'POST',
-            baseURL:"https://testapi.keiwa.app",
+            baseURL:"https://api.keiwa.co",
             url: '/send_notification',
             data:{
                 title:data.title,
